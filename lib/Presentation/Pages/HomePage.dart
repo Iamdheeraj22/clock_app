@@ -1,15 +1,10 @@
-import 'dart:async';
-import 'dart:math';
-
 import 'package:clock_app/Presentation/Pages/ClockPage.dart';
 import 'package:clock_app/Presentation/Pages/StopwatchPage.dart';
 import 'package:clock_app/Presentation/Pages/TimerPage.dart';
-import 'package:clock_app/Presentation/widgets/ClockView.dart';
 import 'package:clock_app/Provider/MenuInfo.dart';
 import 'package:clock_app/Util/Enums.dart';
 import 'package:clock_app/Util/data.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../../Util/Common.dart';
@@ -66,7 +61,7 @@ class _HomePageState extends State<HomePage> {
             menuInfo.updateMenu(currentMenuInfo);
           },
           child: Container(
-            margin: EdgeInsets.only(bottom: 5),
+            margin: EdgeInsets.only(bottom: 5, right: 5.0),
             width: width(context) / 5.7,
             decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(
@@ -75,7 +70,8 @@ class _HomePageState extends State<HomePage> {
                 color: currentMenuInfo.menuType == value.menuType
                     ? Colors.red
                     : Colors.transparent),
-            padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
+            padding:
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

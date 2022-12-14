@@ -33,7 +33,7 @@ class _ClockPageState extends State<ClockPage> {
 
     if (!timeString.startsWith("-")) offSetSign = "+";
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 64, horizontal: 32),
+      padding: const EdgeInsets.symmetric(vertical: 64, horizontal: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -42,8 +42,8 @@ class _ClockPageState extends State<ClockPage> {
             fit: FlexFit.tight,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
+              children:const [
+                 Text(
                   "Clock",
                   style: TextStyle(fontSize: 32, color: Colors.white),
                 ),
@@ -57,11 +57,11 @@ class _ClockPageState extends State<ClockPage> {
                 children: [
                   Text(
                     formattedTime.toString(),
-                    style: TextStyle(fontSize: 64, color: Colors.white),
+                    style:const TextStyle(fontSize: 64, color: Colors.white),
                   ),
                   Text(
                     formattedDate,
-                    style: TextStyle(fontSize: 32, color: Colors.white),
+                    style:const TextStyle(fontSize: 32, color: Colors.white),
                   ),
                 ],
               )),
@@ -79,28 +79,28 @@ class _ClockPageState extends State<ClockPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+               const SizedBox(
                   height: 25,
                 ),
-                Text(
+              const  Text(
                   "Timezone",
                   style: TextStyle(fontSize: 32, color: Colors.white),
                 ),
-                SizedBox(
+              const  SizedBox(
                   height: 10,
                 ),
                 Row(
                   children: [
-                    Icon(
+                   const Icon(
                       Icons.language,
                       color: Colors.white,
                     ),
-                    SizedBox(
+                  const  SizedBox(
                       width: 10,
                     ),
                     Text(
-                      "UTC   " + offSetSign + timeString,
-                      style: TextStyle(fontSize: 14, color: Colors.white),
+                      "UTC   $offSetSign$timeString",
+                      style:const TextStyle(fontSize: 14, color: Colors.white),
                     ),
                   ],
                 )
