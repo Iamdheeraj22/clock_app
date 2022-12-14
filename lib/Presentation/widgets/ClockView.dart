@@ -3,7 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class ClockView extends StatefulWidget {
-  ClockView({Key? key}) : super(key: key);
+  final double s;
+  ClockView({Key? key, required this.s}) : super(key: key);
 
   @override
   State<ClockView> createState() => _ClockViewState();
@@ -13,8 +14,8 @@ class _ClockViewState extends State<ClockView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
-      width: 300,
+      height: widget.s,
+      width: widget.s,
       child: CustomPaint(painter: ClockPainter()),
     );
   }
@@ -60,23 +61,23 @@ class ClockPainter extends CustomPainter {
           .createShader(Rect.fromCircle(center: center, radius: radius))
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 16;
-    canvas.drawCircle(center, radius - 40, fillBrush);
-    canvas.drawCircle(center, radius - 40, outlineBrush);
+    canvas.drawCircle(center, radius - 30, fillBrush);
+    canvas.drawCircle(center, radius - 30, outlineBrush);
     //For Hours
     var hourX = centerX +
-        60 * cos((dateTime.hour * 30 + dateTime.minute * 0.5) * pi / 180);
+        40 * cos((dateTime.hour * 30 + dateTime.minute * 0.5) * pi / 180);
     var hourY = centerX +
-        60 * sin((dateTime.hour * 30 + dateTime.minute * 0.5) * pi / 180);
+        40 * sin((dateTime.hour * 30 + dateTime.minute * 0.5) * pi / 180);
     canvas.drawLine(center, Offset(hourX, hourY), hourHandBrush);
 
     //For Minutes
-    var minutesX = centerX + 80 * cos(dateTime.minute * 6 * pi / 180);
-    var minutesY = centerX + 80 * sin(dateTime.minute * 6 * pi / 180);
+    var minutesX = centerX + 55 * cos(dateTime.minute * 6 * pi / 180);
+    var minutesY = centerX + 55 * sin(dateTime.minute * 6 * pi / 180);
     canvas.drawLine(center, Offset(minutesX, minutesY), minutesHandBrush);
 
     //For seconds
-    var secondX = centerX + 80 * cos(dateTime.second * 6 * pi / 180);
-    var secondY = centerX + 80 * sin(dateTime.second * 6 * pi / 180);
+    var secondX = centerX + 65 * cos(dateTime.second * 6 * pi / 180);
+    var secondY = centerX + 65 * sin(dateTime.second * 6 * pi / 180);
     canvas.drawLine(center, Offset(secondX, secondY), secondHandBrush);
 
     canvas.drawCircle(center, 16, centerFillBrush);
