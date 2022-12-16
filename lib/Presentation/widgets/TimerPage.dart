@@ -1,7 +1,7 @@
 import 'package:clock_app/Util/Common.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/CustomTimerPainter.dart';
+import 'CustomTimerPainter.dart';
 
 class TimerPage extends StatefulWidget {
   TimerPage({Key? key}) : super(key: key);
@@ -12,7 +12,6 @@ class TimerPage extends StatefulWidget {
 
 class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
   AnimationController? controller;
-  bool isStop = false;
 
   @override
   void initState() {
@@ -113,11 +112,3 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
     );
   }
 }
-
-/**
- *  Container(
-            height: height(context) / 2,
-            decoration: BoxDecoration(
-                color: Colors.red, borderRadius: BorderRadius.circular(10)),
-          )
- */

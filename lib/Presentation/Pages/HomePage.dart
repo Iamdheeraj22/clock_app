@@ -1,6 +1,6 @@
 import 'package:clock_app/Presentation/Pages/ClockPage.dart';
 import 'package:clock_app/Presentation/Pages/StopwatchPage.dart';
-import 'package:clock_app/Presentation/Pages/TimerPage.dart';
+import 'package:clock_app/Presentation/widgets/TimerPage.dart';
 import 'package:clock_app/Provider/MenuInfo.dart';
 import 'package:clock_app/Util/Enums.dart';
 import 'package:clock_app/Util/data.dart';
@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 
 import '../../Util/Common.dart';
 import 'AlarmPage.dart';
+import 'TimerScreenPage.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -40,7 +41,7 @@ class _HomePageState extends State<HomePage> {
               } else if (value.menuType == MenuType.alarm) {
                 return AlarmPage();
               } else if (value.menuType == MenuType.timer) {
-                return TimerPage();
+                return TimerScreenPage();
               } else if (value.menuType == MenuType.stopwatch) {
                 return StopwatchPage();
               }
