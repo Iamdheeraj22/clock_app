@@ -1,5 +1,5 @@
 import 'package:clock_app/Provider/MenuInfo.dart';
-import 'package:clock_app/Util/Enums.dart';
+import 'package:clock_app/Logic/Util/Enums.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';

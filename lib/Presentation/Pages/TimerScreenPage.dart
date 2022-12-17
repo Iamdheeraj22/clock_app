@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:clock_app/Util/Common.dart';
+import 'package:clock_app/Logic/Util/Common.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 

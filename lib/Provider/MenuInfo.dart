@@ -1,4 +1,4 @@
-import 'package:clock_app/Util/Enums.dart';
+import 'package:clock_app/Logic/Util/Enums.dart';
 import 'package:flutter/widgets.dart';
 
 class MenuInfo extends ChangeNotifier {

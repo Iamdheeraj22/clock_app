@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import '../../Util/Common.dart';
+import '../../Logic/Util/Common.dart';
 
 class StopwatchPage extends StatefulWidget {
   StopwatchPage({Key? key}) : super(key: key);
@@ -33,6 +33,7 @@ class _StopwatchPageState extends State<StopwatchPage> {
           hours = 0;
           time = "00:00:00";
           isStarted = false;
+          _list.clear();
         }),
       };
   void addLap() => {
@@ -138,22 +139,29 @@ class _StopwatchPageState extends State<StopwatchPage> {
                     SizedBox(
                       width: 20,
                     ),
-                    FloatingActionButton(
-                      onPressed: () {
-                        addLap();
-                      },
-                      child: Icon(Icons.flag),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    MaterialButton(
-                      color: Colors.red,
-                      onPressed: () {
-                        reset();
-                      },
-                      child: Text("Reset"),
-                    ),
+                    (isStarted)
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FloatingActionButton(
+                                onPressed: () {
+                                  addLap();
+                                },
+                                child: Icon(Icons.flag),
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              MaterialButton(
+                                color: Colors.red,
+                                onPressed: () {
+                                  reset();
+                                },
+                                child: Text("Reset"),
+                              ),
+                            ],
+                          )
+                        : Container()
                   ],
                 ),
                 SizedBox()

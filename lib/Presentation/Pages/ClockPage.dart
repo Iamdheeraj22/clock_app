@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../Util/Common.dart';
+import '../../Logic/Util/Common.dart';
 import '../widgets/ClockView.dart';
 
 class ClockPage extends StatefulWidget {

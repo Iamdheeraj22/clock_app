@@ -4,8 +4,8 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../Util/CustomColors.dart';
-import '../../Util/data.dart';
+import '../../Logic/Util/CustomColors.dart';
+import '../../Logic/Util/data.dart';
 
 class AlarmPage extends StatefulWidget {
   AlarmPage({Key? key}) : super(key: key);

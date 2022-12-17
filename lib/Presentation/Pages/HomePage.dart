@@ -2,12 +2,12 @@ import 'package:clock_app/Presentation/Pages/ClockPage.dart';
 import 'package:clock_app/Presentation/Pages/StopwatchPage.dart';
 import 'package:clock_app/Presentation/widgets/TimerPage.dart';
 import 'package:clock_app/Provider/MenuInfo.dart';
-import 'package:clock_app/Util/Enums.dart';
-import 'package:clock_app/Util/data.dart';
+import 'package:clock_app/Logic/Util/Enums.dart';
+import 'package:clock_app/Logic/Util/data.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../Util/Common.dart';
+import '../../Logic/Util/Common.dart';
 import 'AlarmPage.dart';
 import 'TimerScreenPage.dart';
 

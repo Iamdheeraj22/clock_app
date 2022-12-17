@@ -1,8 +1,8 @@
 import 'package:clock_app/Provider/MenuInfo.dart';
-import 'package:clock_app/Util/Enums.dart';
+import 'package:clock_app/Logic/Util/Enums.dart';
 import 'package:flutter/widgets.dart';
 
-import '../Provider/AlarmInfo.dart';
+import '../../Provider/AlarmInfo.dart';
 import 'CustomColors.dart';
 
 List<MenuInfo> menuItems = [
