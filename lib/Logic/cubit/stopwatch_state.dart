@@ -1,6 +1,10 @@
 part of 'stopwatch_cubit.dart';
 
-@immutable
-abstract class StopwatchState {}
-
-class StopwatchInitial extends StopwatchState {}
+class StopwatchState {
+  String time;
+  bool isStarted;
+  StopwatchState({
+    required this.time,
+     this.isStarted=false
+  });
+}
