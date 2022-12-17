@@ -18,7 +18,58 @@ class _StopwatchPageState extends State<StopwatchPage> {
   Timer? timer;
   bool isStarted = false;
 
-  
+  void stop() => {
+        timer?.cancel(),
+        setState(() {
+          isStarted = false;
+        })
+      };
+
+  void reset() => {
+        timer?.cancel(),
+        setState(() {
+          seconds = 0;
+          minutes = 0;
+          hours = 0;
+          time = "00:00:00";
+          isStarted = false;
+        }),
+      };
+  void addLap() => {
+        setState(() {
+          _list.add(time);
+        })
+      };
+
+  void start() => {
+        isStarted = true,
+        timer = Timer.periodic(Duration(seconds: 1), (timer) {
+          int localSeconds = seconds + 1;
+          int localMinutes = minutes;
+          int localHours = hours;
+
+          setState(() {
+            if (localSeconds > 59) {
+              if (localMinutes > 59) {
+                localHours++;
+                localMinutes = 0;
+              } else {
+                localMinutes++;
+                localSeconds = 0;
+              }
+            }
+            seconds = localSeconds;
+            minutes = localMinutes;
+            hours = localHours;
+
+            time = ((hours >= 10) ? hours.toString() : "0$hours") +
+                ":" +
+                ((minutes >= 10) ? minutes.toString() : "0$minutes") +
+                ":" +
+                ((seconds >= 10) ? seconds.toString() : "0$seconds");
+          });
+        })
+      };
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +87,7 @@ class _StopwatchPageState extends State<StopwatchPage> {
                       fontSize: 24),
                 ),
                 Center(
-                  child: Text("00:00:00",
+                  child: Text(time,
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
                           color: Colors.white,
@@ -48,20 +99,49 @@ class _StopwatchPageState extends State<StopwatchPage> {
                   decoration: BoxDecoration(
                       color: Color.fromARGB(255, 255, 82, 82),
                       borderRadius: BorderRadius.circular(10)),
+                  child: ListView.builder(
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      itemCount: _list.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          margin:
+                              EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Lap No: ${index + 1}",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white,
+                                      fontSize: 20)),
+                              Text(_list[index],
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white,
+                                      fontSize: 20)),
+                            ],
+                          ),
+                        );
+                      }),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     MaterialButton(
                       color: Colors.blueAccent,
-                      onPressed: () {},
-                      child: Text("Start"),
+                      onPressed: () {
+                        (isStarted) ? stop() : start();
+                      },
+                      child: Text((isStarted) ? "Stop" : "Start"),
                     ),
                     SizedBox(
                       width: 20,
                     ),
                     FloatingActionButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        addLap();
+                      },
                       child: Icon(Icons.flag),
                     ),
                     SizedBox(
@@ -69,7 +149,9 @@ class _StopwatchPageState extends State<StopwatchPage> {
                     ),
                     MaterialButton(
                       color: Colors.red,
-                      onPressed: () {},
+                      onPressed: () {
+                        reset();
+                      },
                       child: Text("Reset"),
                     ),
                   ],
