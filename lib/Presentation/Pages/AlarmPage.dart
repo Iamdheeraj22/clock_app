@@ -18,9 +18,6 @@ class _AlarmPageState extends State<AlarmPage> {
   @override
   void initState() {
     super.initState();
-    Timer.periodic(Duration(seconds: 1), (timer) {
-      setState(() {});
-    });
   }
 
   @override

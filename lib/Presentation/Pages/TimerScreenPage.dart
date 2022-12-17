@@ -59,6 +59,15 @@ class _TimerScreenPageState extends State<TimerScreenPage> {
                 children: [
                   Align(
                     alignment: Alignment.center,
+                    child: Container(
+                      margin: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(200)),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.center,
                     child: seconds == 0
                         ? Icon(
                             Icons.done,
