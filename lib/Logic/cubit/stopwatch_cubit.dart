@@ -10,7 +10,7 @@ class StopwatchCubit extends Cubit<StopwatchState> {
   String time = "";
   Timer? timer;
   bool isStarted = false;
-  StopwatchCubit() : super(StopwatchState(time: "00:00:00"));
+  StopwatchCubit() : super(StopwatchState(time: "00:00:00", isStarted: false));
 
   void start() => emit(StopwatchState(
       time: startFun()[0], isStarted: startFun()[1] == "t" ? true : false));
@@ -60,6 +60,7 @@ class StopwatchCubit extends Cubit<StopwatchState> {
           ((minutes >= 10) ? minutes.toString() : "0$minutes") +
           ":" +
           ((seconds >= 10) ? seconds.toString() : "0$seconds");
+      print(time);
     });
     return [time, isStarted ? "t" : "f"];
   }

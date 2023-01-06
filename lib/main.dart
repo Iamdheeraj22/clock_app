@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 import 'Presentation/Pages/HomePage.dart';
+import 'Presentation/Pages/StopwatchPage.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,14 +21,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: ChangeNotifierProvider<MenuInfo>(
-          create: (context) => MenuInfo(MenuType.clock), child: HomePage()),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => StopwatchCubit(),
+            )
+          ],
+          child: ChangeNotifierProvider<MenuInfo>(
+              create: (context) => MenuInfo(MenuType.clock), child: HomePage()),
+        ));
   }
 }
 /***
@@ -40,29 +47,28 @@ class MyApp extends StatelessWidget {
 
   await flutterLocalNotificationsPlugin.initialize(initializationSettings);
  */
-  // void onDidReceiveLocalNotification(
-  //   {int id, String title, String body, String payload}) async {
-  // // display a dialog with the notification details, tap ok to go to another page
-  // showDialog(
-  //   context: context,
-  //   builder: (BuildContext context) => CupertinoAlertDialog(
-  //     title: Text(title),
-  //     content: Text(body),
-  //     actions: [
-  //       CupertinoDialogAction(
-  //         isDefaultAction: true,
-  //         child: Text('Ok'),
-  //         onPressed: () async {
-  //           // Navigator.of(context, rootNavigator: true).pop();
-  //           // await Navigator.push(
-  //           //   context,
-  //           //   MaterialPageRoute(
-  //           //     builder: (context) => SecondScreen(payload),
-  //           //   ),
-  //           // );
-  //         },
-  //       )
-  //     ],
-  //   ),
-  // );
-
+// void onDidReceiveLocalNotification(
+//   {int id, String title, String body, String payload}) async {
+// // display a dialog with the notification details, tap ok to go to another page
+// showDialog(
+//   context: context,
+//   builder: (BuildContext context) => CupertinoAlertDialog(
+//     title: Text(title),
+//     content: Text(body),
+//     actions: [
+//       CupertinoDialogAction(
+//         isDefaultAction: true,
+//         child: Text('Ok'),
+//         onPressed: () async {
+//           // Navigator.of(context, rootNavigator: true).pop();
+//           // await Navigator.push(
+//           //   context,
+//           //   MaterialPageRoute(
+//           //     builder: (context) => SecondScreen(payload),
+//           //   ),
+//           // );
+//         },
+//       )
+//     ],
+//   ),
+// );

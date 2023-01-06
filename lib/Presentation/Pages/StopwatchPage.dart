@@ -77,97 +77,104 @@ class _StopwatchPageState extends State<StopwatchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.transparent,
-        body: Container(
-          margin: EdgeInsets.only(top: height(context) / 15),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Stopwatch",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
-                      fontSize: 24),
-                ),
-                Center(
-                  child: Text(time,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
-                          fontSize: height(context) / 9)),
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
-                  height: height(context) / 2,
-                  decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 255, 82, 82),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: ListView.builder(
-                      padding: EdgeInsets.zero,
-                      shrinkWrap: true,
-                      itemCount: _list.length,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          margin:
-                              EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text("Lap No: ${index + 1}",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.white,
-                                      fontSize: 20)),
-                              Text(_list[index],
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.white,
-                                      fontSize: 20)),
-                            ],
-                          ),
-                        );
-                      }),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    MaterialButton(
-                      color: Colors.blueAccent,
-                      onPressed: () {
-                        (isStarted) ? stop() : start();
-                      },
-                      child: Text((isStarted) ? "Stop" : "Start"),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    (isStarted)
-                        ? Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              FloatingActionButton(
-                                onPressed: () {
-                                  addLap();
-                                },
-                                child: Icon(Icons.flag),
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              MaterialButton(
-                                color: Colors.red,
-                                onPressed: () {
-                                  reset();
-                                },
-                                child: Text("Reset"),
-                              ),
-                            ],
-                          )
-                        : Container()
-                  ],
-                ),
-                SizedBox()
-              ]),
-        ));
+        body:
+            BlocBuilder<StopwatchCubit, StopwatchState>(builder: (ctx, state) {
+          return Container(
+            margin: EdgeInsets.only(top: height(context) / 15),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Stopwatch",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                        fontSize: 24),
+                  ),
+                  Center(
+                    child: Text(state.time,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                            fontSize: height(context) / 9)),
+                  ),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    height: height(context) / 2,
+                    decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 255, 82, 82),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: ListView.builder(
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        itemCount: _list.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Lap No: ${index + 1}",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white,
+                                        fontSize: 20)),
+                                Text(_list[index],
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white,
+                                        fontSize: 20)),
+                              ],
+                            ),
+                          );
+                        }),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      MaterialButton(
+                        color: Colors.blueAccent,
+                        onPressed: () {
+                          if (state.isStarted) {
+                            ctx.read<StopwatchCubit>().stop();
+                          } else {
+                            ctx.read<StopwatchCubit>().start();
+                          }
+                        },
+                        child: Text((state.isStarted) ? "Stop" : "Start"),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      (state.isStarted)
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                FloatingActionButton(
+                                  onPressed: () {
+                                    addLap();
+                                  },
+                                  child: Icon(Icons.flag),
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                MaterialButton(
+                                  color: Colors.red,
+                                  onPressed: () {
+                                    ctx.read<StopwatchCubit>().reset();
+                                  },
+                                  child: Text("Reset"),
+                                ),
+                              ],
+                            )
+                          : Container()
+                    ],
+                  ),
+                  SizedBox()
+                ]),
+          );
+        }));
   }
 }
