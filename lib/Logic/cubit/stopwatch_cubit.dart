@@ -36,6 +36,7 @@ class StopwatchCubit extends Cubit<StopwatchState> {
   }
 
   List startFun() {
+    timer?.cancel();
     isStarted = true;
     timer = Timer.periodic(Duration(seconds: 1), (timer) {
       int localSeconds = seconds + 1;
@@ -60,6 +61,7 @@ class StopwatchCubit extends Cubit<StopwatchState> {
           ((minutes >= 10) ? minutes.toString() : "0$minutes") +
           ":" +
           ((seconds >= 10) ? seconds.toString() : "0$seconds");
+          emit(StopwatchState(time: time, isStarted: isStarted));
       print(time);
     });
     return [time, isStarted ? "t" : "f"];
